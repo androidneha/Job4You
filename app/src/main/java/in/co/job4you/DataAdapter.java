@@ -35,7 +35,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
 
         viewHolder.job_title.setText(mFilteredList.get(i).getJob_title());
         viewHolder.company_name.setText(mFilteredList.get(i).getCompanyName());
-        viewHolder.exp.setText(mFilteredList.get(i).getExp() + " Yrs");
+        viewHolder.exp.setText(mFilteredList.get(i).getExp() + "");
         viewHolder.location.setText(mFilteredList.get(i).getLocation());
         viewHolder.skills.setText(mFilteredList.get(i).getRequired_qualification()+" -  "+mFilteredList.get(i).getSort_description());
         viewHolder.apply.setOnClickListener(new View.OnClickListener() {

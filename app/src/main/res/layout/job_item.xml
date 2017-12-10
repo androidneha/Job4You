@@ -111,7 +111,7 @@
                     <View
                         android:layout_width="5dp"
                         android:layout_height="5dp"
-                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/dot" />
 
                     <TextView
@@ -119,6 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="Chennai"
+                        android:maxLength="30"
                         android:id="@+id/location"
                         android:textColor="#979595"
                         android:textSize="13sp" />
@@ -149,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/skills"
+                    android:maxLength="50"
                     android:text="Android,Core Java, SOAP"
                     android:textColor="#7b7979"
                     android:textSize="12sp" />
