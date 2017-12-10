@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Job4You</string>
+    <string name="title_activity_job">Job List</string>
+    <string name="title_activity_webview">Apply Here</string>
+</resources>
