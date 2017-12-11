@@ -32,7 +32,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, final int i) {
-
         viewHolder.job_title.setText(mFilteredList.get(i).getJob_title());
         viewHolder.company_name.setText(mFilteredList.get(i).getCompanyName());
         viewHolder.exp.setText(mFilteredList.get(i).getExp() + "");
