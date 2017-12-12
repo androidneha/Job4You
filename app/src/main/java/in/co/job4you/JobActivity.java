@@ -2,6 +2,7 @@ package in.co.job4you;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,10 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-
+import android.widget.Toast;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,8 +67,13 @@ public class JobActivity extends AppCompatActivity {
         });
 
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent),getResources().getColor(R.color.colorPrimaryDark));
+
+        Log.e("IP -",Utils.getPublicIPAddress(this));
+        if(isNetworkAvailable(this)) {
+            new SendIPAddress().execute(new String[]{Utils.getPublicIPAddress(this)});
+        }
     }
-        void refreshItems() {
+    void refreshItems() {
             onItemsLoadComplete();
         }
         void onItemsLoadComplete() {
@@ -143,5 +156,41 @@ public class JobActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    class SendIPAddress extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected String doInBackground(String... params)
+        {
+            BufferedReader inBuffer = null;
+            String url =BASE_URL+"/api/tracking";
+            String result = "fail";
+            try {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost request = new HttpPost(url);
+                List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+                postParameters.add(new BasicNameValuePair("userIp", params[0]));
+                UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(postParameters);
+                request.setEntity(formEntity);
+                httpClient.execute(request);
+                result="got it";
+            } catch(Exception e) {
+                // Do something about exceptions
+                result = e.getMessage();
+            } finally {
+                if (inBuffer != null) {
+
+                }
+            }
+            return  result;
+        }
+
+        protected void onPostExecute(String page)
+        {
+            //textView.setText(page);
+            Log.e("Response",page.toString());
+            Toast toast = Toast.makeText(getApplicationContext(), page, Toast.LENGTH_SHORT);
+            //toast.show();
+        }
     }
 }
