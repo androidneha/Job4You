@@ -70,8 +70,6 @@ public class JobActivity extends AppCompatActivity {
         });
 
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent),getResources().getColor(R.color.colorPrimaryDark));
-
-        //Log.e("IP -",Utils.getPublicIPAddress(this));
         if(isNetworkAvailable(this)) {
             new SendIPAddress().execute(new String[]{Utils.getPublicIPAddress(this)});
         }
