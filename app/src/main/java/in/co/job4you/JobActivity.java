@@ -27,6 +27,9 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -107,7 +110,14 @@ public class JobActivity extends AppCompatActivity {
     }
 
     private void loadJSON() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+
+        int cacheSize = 10 * 1024 * 1024; // 10 MB
+        Cache cache = new Cache(getCacheDir(), cacheSize);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build();
         RequestInterface request = retrofit.create(RequestInterface.class);
         Call<JSONResponse> call = request.getJSON();
         call.enqueue(new Callback<JSONResponse>() {
@@ -134,7 +144,12 @@ public class JobActivity extends AppCompatActivity {
 
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-        search(searchView);
+        if(isNetworkAvailable(this)) {
+            search(searchView);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"No Internet Connection Found",Toast.LENGTH_LONG).show();
+        }
         return true;
     }
 
