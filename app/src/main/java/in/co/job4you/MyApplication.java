@@ -9,7 +9,7 @@ import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
 @ReportsCrashes(formKey = "", // will not be used
-        mailTo = "neha.8xx@gmail.com", mode = ReportingInteractionMode.TOAST, resToastText = R.string.error_crash)
+        mailTo = "basantjavajob@gmail.com", mode = ReportingInteractionMode.TOAST, resToastText = R.string.error_crash)
 
 public class MyApplication extends Application
 {

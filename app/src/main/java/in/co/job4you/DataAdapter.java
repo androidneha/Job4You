@@ -108,7 +108,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
         };
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
         private TextView job_title,company_name,exp,location,skills;Button apply;ImageView share;
         public ViewHolder(View view) {
             super(view);

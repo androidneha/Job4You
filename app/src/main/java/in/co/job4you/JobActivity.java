@@ -100,7 +100,6 @@ public class JobActivity extends AppCompatActivity {
         call.enqueue(new Callback<JSONResponse>() {
             @Override
             public void onResponse(Call<JSONResponse> call, Response<JSONResponse> response) {
-
                 JSONResponse jsonResponse = response.body();
                 mArrayList = new ArrayList<>(Arrays.asList(jsonResponse.getJob()));
                 mAdapter = new DataAdapter(mArrayList);
@@ -133,17 +132,13 @@ public class JobActivity extends AppCompatActivity {
     }
 
     private void search(SearchView searchView) {
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 mAdapter.getFilter().filter(newText);
                 return true;
             }
