@@ -111,7 +111,6 @@ public class JobActivity extends AppCompatActivity {
 
         int cacheSize = 10 * 1024 * 1024; // 10 MB
         Cache cache = new Cache(getCacheDir(), cacheSize);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cache(cache)
                 .build();
@@ -142,12 +141,7 @@ public class JobActivity extends AppCompatActivity {
 
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-        if(isNetworkAvailable(this)) {
             search(searchView);
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"No Internet Connection Found",Toast.LENGTH_LONG).show();
-        }
         return true;
     }
 
@@ -165,7 +159,9 @@ public class JobActivity extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
+                if(isNetworkAvailable(JobActivity.this)) {
+                    mAdapter.getFilter().filter(newText);
+                }
                 return true;
             }
         });

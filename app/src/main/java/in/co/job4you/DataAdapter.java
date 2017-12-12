@@ -84,7 +84,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
 
                         if (androidVersion.getCompanyName().toLowerCase().contains(charString) || androidVersion.getCompanyName().toLowerCase().contains(charString) || androidVersion.getCompanyName().toLowerCase().contains(charString) ||
                                 androidVersion.getExp().toLowerCase().contains(charString) || androidVersion.getExp().toLowerCase().contains(charString) || androidVersion.getExp().toLowerCase().contains(charString) ||
-                                androidVersion.getSort_description().toLowerCase().contains(charString) || androidVersion.getSort_description().toLowerCase().contains(charString) || androidVersion.getSort_description().toLowerCase().contains(charString) ||
                                 androidVersion.getJob_title().toLowerCase().contains(charString) || androidVersion.getJob_title().toLowerCase().contains(charString) || androidVersion.getJob_title().toLowerCase().contains(charString) ||
                                 androidVersion.getLocation().toLowerCase().contains(charString) || androidVersion.getLocation().toLowerCase().contains(charString) || androidVersion.getLocation().toLowerCase().contains(charString) ||
                                 androidVersion.getRequired_qualification().toLowerCase().contains(charString) || androidVersion.getRequired_qualification().toLowerCase().contains(charString) || androidVersion.getRequired_qualification().toLowerCase().contains(charString)) {
